@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Media } from 'react';
 
 class StaffList extends Component {
     constructor(props) {
@@ -187,7 +186,7 @@ class StaffList extends Component {
         return (
             <div className='container'>
                 <div className='row'>
-                        <ul className='mt-5'>{menustaff}</ul>
+                        <ul className='col-12 col-md-6 col-lg-4 mt-3 mt-5'>{menustaff}</ul>
                 </div>
             </div>
         );
