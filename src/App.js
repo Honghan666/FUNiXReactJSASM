@@ -1,9 +1,8 @@
-import React, { Component} from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import { Navbar, NavbarBrand } from 'reactstrap';
 import StaffList from './components/StaffListComponent';
-import { STAFFS} from './components/staffs'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {STAFFS} from './components/staffs';
 
 class App extends Component {
   constructor(props) {
@@ -13,12 +12,14 @@ class App extends Component {
     }
   }
 
+  
+
   render() {
     return (
       <div>
         <Navbar dark color='primary'>
           <div className='container'>
-            <NavbarBrand href='/'>Ung dung quan ly nhan s v1.0</NavbarBrand>
+            <NavbarBrand href='/'>Ung dung quan ly nhan su v1.0</NavbarBrand>
           </div>
         </Navbar>
         <StaffList staffs={this.state.staffs} />
@@ -28,3 +29,4 @@ class App extends Component {
 }
 
 export default App;
+
