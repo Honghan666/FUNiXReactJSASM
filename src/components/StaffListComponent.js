@@ -181,7 +181,7 @@ class StaffList extends Component {
     render() {
         let menustaff = this.state.staffs.map((staff) => {
             return (
-                    <li id='list' className='col-10 mt-5 border rounded'>{staff.name}</li>
+                    <li id='list' className='col-12 col-md-5 mt-5 border rounded'>{staff.name}</li>
             );
         });
         return (
