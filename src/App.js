@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import { Navbar} from 'reactstrap';
 import StaffList from './components/StaffListComponent';
 import {STAFFS} from './components/staffs';
 
@@ -17,9 +17,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar dark color='primary'>
+        <Navbar dark className='color'>
           <div className='container'>
-            <h2 className='navbar-brand text-center'>Ứng dụng quản lý nhân sự v1.0</h2>
+            <p className='navbar-brand text-center'>Ứng dụng quản lý nhân sự v1.0</p>
           </div>
         </Navbar>
         <StaffList staffs={this.state.staffs} />

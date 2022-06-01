@@ -15,10 +15,16 @@ class StaffList extends Component {
         });
     }
 
+    closeStaff(staff) {
+        this.setState({
+            check: null
+        });
+    }
+
     staffDetail(staff) {
         if(staff != null) {
             return (
-                <div className='col-5 mx-auto card'>
+                <div className='col-5 mx-auto card staff-detail card-detail'>
                     <img width="35%" src={staff.image} alt={staff.name} className='rounded mx-auto d-block' />
                         <div className='card-body'>
                             <p>Họ và Tên: {staff.name}</p>
@@ -28,6 +34,7 @@ class StaffList extends Component {
                             <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
                             <p>Số ngày đã làm thêm: {staff.overTime}</p>
                         </div>
+                    <button type='button' className='btn mx-auto' onClick={() => this.closeStaff(staff)}>Đóng</button>
                 </div>
             );
         }
@@ -39,10 +46,10 @@ class StaffList extends Component {
     render() {
         const menustaff = this.props.staffs.map((staff) => {
             return (
-                    <div className='col-12 col-md-6 col-lg-4 mt-3 stafflist'>
-                        <div className='card' key={staff.id} onClick={() => this.staffClick(staff)}>
+                    <div className='col-12 col-md-6 col-lg-4 mt-3'>
+                        <div className='card stafflist' key={staff.id} onClick={() => this.staffClick(staff)}>
                             <div className='card-body'>
-                                <p>{staff.name}</p>
+                                <p className='name'>{staff.name}</p>
                             </div>
                         </div>
                     </div>

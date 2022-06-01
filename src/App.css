@@ -4,8 +4,32 @@ img {
 
 .stafflist:hover {
   cursor: pointer;
+  background-color: #3498db5f;
 }
 
-.active {
-  background-color: blue;
+
+.color {
+  background-color: #3498DB;
+}
+
+.name {
+  font-size: 18px;
+}
+
+.staff-detail {
+  background-color: #3498db22;
+}
+
+.btn {
+  width: 16%;
+  margin-bottom: 8px;
+  border: 1px solid rgba(0, 0, 0, .125) ;
+}
+
+.btn:hover {
+  background-color: rgba(0, 0, 0, .125);
+}
+
+.card-detail {
+  margin-bottom: 5%;
 }
