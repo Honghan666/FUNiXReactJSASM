@@ -19,7 +19,7 @@ class App extends Component {
       <div>
         <Navbar dark color='primary'>
           <div className='container'>
-            <NavbarBrand href='/'>Ung dung quan ly nhan su v1.0</NavbarBrand>
+            <h2 className='navbar-brand text-center'>Ứng dụng quản lý nhân sự v1.0</h2>
           </div>
         </Navbar>
         <StaffList staffs={this.state.staffs} />

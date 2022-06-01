@@ -9,7 +9,7 @@ class StaffList extends Component {
         };
     }
 
-    onStaffClick(staff) {
+    staffClick(staff) {
         this.setState({
             check: staff
         });
@@ -37,11 +37,10 @@ class StaffList extends Component {
     }
 
     render() {
-        console.log(this.props.staffs)
         const menustaff = this.props.staffs.map((staff) => {
             return (
-                    <div className='col-12 col-md-6 col-lg-4 mt-3'>
-                        <div className='card' key={staff.id} onClick={() => this.onStaffClick(staff)}>
+                    <div className='col-12 col-md-6 col-lg-4 mt-3 stafflist'>
+                        <div className='card' key={staff.id} onClick={() => this.staffClick(staff)}>
                             <div className='card-body'>
                                 <p>{staff.name}</p>
                             </div>
