@@ -1,22 +1,23 @@
 import React from 'react';
 import {Navbar, NavbarBrand, Nav, NavItem} from 'reactstrap';
+import {NavLink} from "react-router-dom"
 import '../App.css'
 
 function Header() {
     return(
         <div>
-            <Navbar dark className='color'>
+            <Navbar dark expand='md' className='color'>
                 <NavbarBrand><img width='50' src="assets/images/logo.png" alt='logo'/></NavbarBrand>
                 <div className='container'>
                 <Nav>
                     <NavItem>
-                        <span className='ti-user'></span> Nhân viên
+                        <NavLink className='nav-link' to='/nhanvien'><span className='ti-user'></span> Nhân viên</NavLink>
                     </NavItem>
                     <NavItem>
-                        <span className='ti-id-badge'></span> Phòng ban
+                        <NavLink className='nav-link' to='/phongban'><span className='ti-id-badge'></span> Phòng ban</NavLink>
                     </NavItem>
                     <NavItem>
-                        <span className='ti-money'></span> Bảng lương
+                        <NavLink className='nav-link' to='/bangluong'><span className='ti-money'></span> Bảng lương</NavLink>
                     </NavItem>
                 </Nav>
                 </div>

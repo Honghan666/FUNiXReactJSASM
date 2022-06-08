@@ -42,3 +42,19 @@ img {
     font-size: 35px;
     color: black;
   }
+
+  .nav-link {
+    color: black;
+  }
+
+  .nav-link:hover {
+    color: white;
+  }
+
+  .footer-content {
+    margin-top: 20px;
+  }
+
+  .icon-group:hover {
+    text-decoration: none;
+  }
