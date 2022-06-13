@@ -17,7 +17,7 @@ function Header() {
                         <NavLink className='nav-link' to='/phongban'><span className='ti-id-badge'></span> Phòng ban</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink className='nav-link' to='/bangluong'><span className='ti-money'></span> Bảng lương</NavLink>
+                        <NavLink className='nav-link' to='/luong'><span className='ti-money'></span> Bảng lương</NavLink>
                     </NavItem>
                 </Nav>
                 </div>

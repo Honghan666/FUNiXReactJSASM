@@ -58,3 +58,7 @@ img {
   .icon-group:hover {
     text-decoration: none;
   }
+
+  .footer {
+    margin-top: 20px;
+  }

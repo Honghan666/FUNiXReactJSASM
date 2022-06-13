@@ -3,7 +3,7 @@ import React from 'react';
 function Footer(props) {
     return(
         <div className='color'>
-            <div className='container'>
+            <div className='container footer'>
                 <div className='row '>
                     <div className='col-7 col-sm-5 mx-auto footer-content'>
                         <h4>TRỤ SỞ</h4>

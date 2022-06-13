@@ -1,6 +1,6 @@
 import React from 'react';
 import dateFormat from 'dateformat';
-import { Breadcrumb, BreadcrumbItem, CardImg, CardTitle } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function StaffDetail(props) {
@@ -10,7 +10,7 @@ function StaffDetail(props) {
                 <div className='row'>
                     <Breadcrumb>
                         <BreadcrumbItem>
-                            <Link to="/staff">Nhân viên</Link>
+                            <Link to="/nhanvien">Nhân viên</Link>
                         </BreadcrumbItem>
                         <BreadcrumbItem active>
                             {props.staff.name}
@@ -45,7 +45,6 @@ function RenderStaff({staff}) {
                         <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
                         <p>Số ngày đã làm thêm: {staff.overTime}</p>
                     </div>
-                <button type='button' className='btn mx-auto' onClick={() => this.closeStaff(staff)}>Đóng</button>
             </div>
         );
     }
