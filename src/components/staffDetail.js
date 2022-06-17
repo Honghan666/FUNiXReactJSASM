@@ -35,7 +35,7 @@ function StaffDetail(props) {
 function RenderStaff({staff}) {
     if(staff != null) {
         return (
-            <div className='col-5 mx-auto card staff-detail card-detail'>
+            <div className='col-8 col-md-8 col-lg-5  mx-auto card staff-detail card-detail'>
                 <img width="35%" src={staff.image} alt={staff.name} className='rounded mx-auto d-block' />
                     <div className='card-body'>
                         <p>Họ và Tên: {staff.name}</p>

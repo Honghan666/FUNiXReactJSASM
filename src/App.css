@@ -67,8 +67,21 @@ img {
     width: 32%;
   }
 
+  .btn-search {
+    background-color: #3498DB;
+  }
+
+  .btn-search:hover {
+    color: white;
+    opacity: 0.9;
+  }
+
   .add-btn:hover {
     opacity: 0.5;
+  }
+
+  .control-group {
+    margin-bottom: 4px;
   }
 
   
