@@ -14,7 +14,7 @@ function Header() {
                         <NavLink className='nav-link' to='/nhanvien'><span className='ti-user'></span> Nhân viên</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink className='nav-link' to='/phongban'><span className='ti-id-badge'></span> Phòng ban</NavLink>
+                        <NavLink className='nav-link' to='/departments'><span className='ti-id-badge'></span> Phòng ban</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink className='nav-link' to='/luong'><span className='ti-money'></span> Bảng lương</NavLink>

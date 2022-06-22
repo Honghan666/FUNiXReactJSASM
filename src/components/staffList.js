@@ -4,6 +4,23 @@ import { Component } from 'react/cjs/react.production.min';
 import { Card, CardImg, CardBody, CardSubtitle, Button, Modal, Col, Form, Input,
 ModalHeader, ModalBody, Row, Label, FormFeedback } from 'reactstrap';
 
+const RenderStaffItem = ({ staff, onDeleteStaff }) => {
+    return (
+        <div>
+            <Link to={`/nhanvien/${staff.id}`}>
+                <Card>
+                    <CardImg width="100%" src={staff.image} alt={staff.name} />
+                    <CardBody>
+                        <CardSubtitle>{staff.name}</CardSubtitle>
+                    </CardBody>
+                </Card>
+            </Link>
+            <Button color="danger" onClick={() => onDeleteStaff(staff.id)}>Delete</Button>
+        </div>
+    )
+}
+
+
 class StaffList extends Component {
     constructor(props) {
         super(props);
@@ -119,6 +136,9 @@ class StaffList extends Component {
         return errors;
     }
 
+
+
+
     render() {
         const errors = this.validate(this.state.name, this.state.department, this.state.salaryScale, this.state.doB,
             this.state.startDate, this.state.annualLeave, this.state.overTime);
@@ -130,15 +150,11 @@ class StaffList extends Component {
             return 0;
         })
         .map(staff=>{
-            return <div className='col-6 col-md-4 col-lg-2 mt-3'>
-            <div className='card stafflist' key={staff.id}>
-            <Link to={`/nhanvien/${staff.id}`}><img width="100%" src={staff.image} alt={staff.name} className='rounded mx-auto d-block'/></Link>
-                <div className='card-body'>
-                    <p className='name text-center'>{staff.name}</p>
+            return (
+                <div className='col-6 col-md-4 col-lg-2 mt-3'>
+                    <RenderStaffItem staff={staff} onDeleteStaff={this.props.onDeleteStaff} />
                 </div>
-            </div>
-            <button onClick={() => onDeleteStaff(staff.id)}>Delete</button>
-        </div>
+            )
         });
 
         //Render ra giao diện staff list

@@ -1,23 +1,31 @@
 import React from "react";
 import { Card, CardTitle, CardBody, CardText} from "reactstrap";
+import { Link } from 'react-router-dom';
+
 
 function RenderDept(props) {
     return (
-        <Card>
-            <CardTitle className="m-2">{props.dept.name}</CardTitle>
-            <CardBody>
-                <CardText> So luong nhan vien: {props.dept.numberOfStaff}</CardText>
-            </CardBody>
-        </Card>
+        <Link to={`/departments/${props.dept.id}`}>
+            <Card>
+                <CardTitle className="m-2">{props.dept.name}</CardTitle>
+                <CardBody>
+                    <CardText>Số lượng nhân viên: {props.staffNo.length}</CardText>
+                </CardBody>
+            </Card>
+        </Link>
     );
 }
 
 function PhongBan(props) {
     //dùng map() để fetch toàn bộ dữ liệu từ props của main component
-    const departments = props.dept.map((department)=>{
+    const departments = props.departments.map((department)=>{
         return(
         <div className='col-12 col-md-6 col-lg-4 mt-2 mb-2' key={department.id}>
-        <RenderDept dept={department} />
+        <RenderDept 
+        dept={department}
+        staffNo={props.staffs.filter(
+            (staff) => staff.departmentId === department.id
+        )} />
         </div>
     );
 });
