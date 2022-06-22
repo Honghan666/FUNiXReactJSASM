@@ -30,6 +30,8 @@ class StaffList extends Component {
             nameF: "",
             modalOpen: false
         };
+
+        //Ràng buộc 2 chiều đối với các hàm khai báo bên dưới
         this.timNhanVien = this.timNhanVien.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,6 +45,7 @@ class StaffList extends Component {
         });
     }
 
+    //Tìm kiếm từ khóa tên nhân viên và render ra kết quả tìm kiếm nhân viên
     timNhanVien(event) {
         event.preventDefault();
         const nameS = event.target.nameS.value;
@@ -134,8 +137,11 @@ class StaffList extends Component {
                     <p className='name text-center'>{staff.name}</p>
                 </div>
             </div>
+            <button onClick={() => onDeleteStaff(staff.id)}>Delete</button>
         </div>
         });
+
+        //Render ra giao diện staff list
          return <div className='container'>
             <div className='row'>
                 <div className='col-12 col-md-6 mt-3'>

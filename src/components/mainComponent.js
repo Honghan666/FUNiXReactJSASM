@@ -8,6 +8,36 @@ import Footer from './footer';
 import { Switch, Route } from "react-router-dom";
 import { STAFFS, DEPARTMENTS } from './staffs';
 import { Component } from 'react/cjs/react.production.min';
+import { addStaff, fetchStaffs, fetchDepartments, deleteStaff, updateStaff} from "../redux/actionCreators";
+
+const mapStateToProps = (state) => {
+  return {
+    staffs: state.staffs,
+    departments: state.departments,
+    staffsSalary: state.staffsSalary
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  addStaff: (staff) => {
+    dispatch(addStaff(staff));
+  },
+  fetchStaffs: () => {
+    dispatch(fetchStaffs());
+  },
+  fetchDepartments: () => {
+    dispatch(fetchDepartments());
+  },
+  fetchStaffsSalary: () => {
+    dispatch(fetchStaffsSalary());
+  },
+  deleteStaff: (id) => {
+    dispatch(deleteStaff(id));
+  },
+  updateStaff: (staff) => {
+    dispatch(updateStaff(staff));
+  },
+});
 
 class Main extends Component {
   constructor(props) {
@@ -29,12 +59,36 @@ class Main extends Component {
     console.log(newStaff);
     console.log(this.state.staffs);
   }
+
+  componentDidMount() {
+    this.props.fetchStaffs();
+    this.props.fetchDepartments();
+    this.props.fetchStaffsSalary();
+  }
   
   render() {
     const StaffWithId = ({ match }) => {
       return <StaffDetail staff={ this.state.staffs.filter(
-          (item) => item.id === parseInt(match.params.nhanvienId, 10))[0]}/>
-      }
+          (item) => item.id === parseInt(match.params.nhanvienId, 10))[0]}
+        dept = {this.props.departments.departments}
+        onUpdateStaff={this.props.updateStaff}  
+        />
+      };
+    
+    const StaffWithDept = ({ match }) => {
+      return (
+          <DepartmentDetail
+            dept = {
+              this.props.departments.departments.filter(
+                (dept) => dept.id === match.params.deptId
+              )[0]
+            }
+            staff = {this.props.staffs.staffs.filter(
+              (staff) => staff.departmentId === match.params.deptId
+            )}
+          />
+        );
+      };
       
     return(
       <div>
