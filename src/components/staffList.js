@@ -15,7 +15,7 @@ const RenderStaffItem = ({ staff, onDeleteStaff }) => {
                     </CardBody>
                 </Card>
             </Link>
-            <Button color="danger" onClick={() => onDeleteStaff(staff.id)}>Delete</Button>
+            <Button className="del-btn" color="danger" onClick={() => onDeleteStaff(staff.id)}>Xóa</Button>
         </div>
     )
 }
@@ -95,7 +95,7 @@ class StaffList extends Component {
             overTime: this.state.overTime,
             image: this.state.image
         };
-        this.props.onAdd(newStaff);
+        this.props.addStaff(newStaff);
     };
 
     validate(name, department, salaryScale, doB, startDate, annualLeave, overTime) {

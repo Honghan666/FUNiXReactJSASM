@@ -1,73 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Component } from 'react/cjs/react.production.min';
-import { Card, CardImg, CardBody, CardSubtitle, Button, Modal, Col, Form, Input,
-ModalHeader, ModalBody, Row, Label, FormFeedback } from 'reactstrap';
+import React from "react";
+import {
+  Col,
+  Row,
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  CardImg,
+  CardText,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 
-
-
-class DepartmentDetail extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            name: "",
-            doB: "",
-            salaryScale: 1,
-            startDate: "",
-            department: "Sale",
-            annualLeave: 0,
-            overTime: 0,
-            salary: 30000,
-            image: "/assets/images/alberto.png",
-            touched: {
-                name: false,
-                doB: false,
-                salaryScale: false,
-                startDate: false,
-                department: false,
-                annualLeave: false,
-                overTime: false
-            },
-            nameF: "",
-            modalOpen: false
-        };
-    }
-
-    render() {
-        
-        const menustaff = this.props.staffs
-        .filter((staff) => {
-            if (this.state.nameF === "") return staff;
-            else if (staff.name.toLowerCase().includes(this.state.nameF.toLowerCase()))
-            return staff;
-            return 0;
-        })
-        .map(staff=>{
-            return (
-                <div className='col-6 col-md-4 col-lg-2 mt-3'>
-                    <div>
-                    <Link to={`/nhanvien/${staff.id}`}>
-                    <Card>
-                    <CardImg width="100%" src={staff.image} alt={staff.name} />
-                    <CardBody>
-                        <CardSubtitle>{staff.name}</CardSubtitle>
-                    </CardBody>
-                    </Card>
-            </Link>
-                    </div>
-                </div>
-            )
-        });
-
-        //Render ra giao diện staff list
-         return <div className='container'>
-         <div className='row'>{menustaff}</div>
-     </div>;
-     
-    }
-}
-
-
+const DepartmentDetail = (props) => {
+  const staffs = props.staffs.map((staff) => {
+    return (
+      <Col xs={6} md={4} lg={2} key={staff.id}>
+        <Link to={`/nhanvien/${staff.id}`}>
+          <Card className="mt-2 p-1" outline color="info">
+            <CardImg top src={staff.image}></CardImg>
+            <CardText className="text-center" tag="h6">
+              {staff.name}
+            </CardText>
+          </Card>
+        </Link>
+      </Col>
+    );
+  });
+  
+  return (
+    <div className="container">
+      <Row>
+        <Col lg={5} xs={10} md={6}>
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/departments">Phòng ban</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem>{props.departments.name}</BreadcrumbItem>
+          </Breadcrumb>
+        </Col>
+      </Row>
+      <Row className="mb-1">{staffs}</Row>
+    </div>
+  );
+};
 
 export default DepartmentDetail;

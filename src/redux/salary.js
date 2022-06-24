@@ -1,10 +1,10 @@
 import * as actionType from "./actionType";
 
-export const Salary = (
+export const StaffsSalary = (
     state = {
         isLoading: true,
         errMess: null,
-        salary: []
+        staffsSalary: []
     },
     action
 ) => {
@@ -13,8 +13,7 @@ export const Salary = (
             return {
                 ...state,
                 isLoading: false,
-                errMess: null,
-                salary: action.payload
+                staffsSalary: action.payload
             };
 
         case actionType.STAFFSSALARY_LOADING:
@@ -22,15 +21,14 @@ export const Salary = (
                 ...state,
                 isLoading: true,
                 errMess: null,
-                salary: []
+                staffsSalary: []
             };
 
         case actionType.STAFFSSALARY_FAILED:
             return {
                 ...state,
                 isLoading: false,
-                errMess: action.payload,
-                salary: []
+                errMess: action.payload
             };
         
         default:

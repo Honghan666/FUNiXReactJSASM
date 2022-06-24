@@ -31,7 +31,6 @@ export const Staffs = (
         case actionType.ADD_STAFF_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
                 staffs: action.payload
             };
 

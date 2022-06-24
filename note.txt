@@ -1,0 +1,44 @@
+staffList 
+line 140
+onClick={() => onDeleteStaff(staff.id)}
+
+main 
+32 chen vo
+fetchStaffsSalary: () => {
+    dispatch(fetchStaffsSalary());
+  },
+
+
+<div className='col-6 col-md-4 col-lg-2 mt-3'>
+            <div className='card stafflist' key={staff.id}>
+            <Link to={`/nhanvien/${staff.id}`}><img width="100%" src={staff.image} alt={staff.name} className='rounded mx-auto d-block'/></Link>
+                <div className='card-body'>
+                    <p className='name text-center'>{staff.name}</p>
+                </div>
+            </div>
+            <Button color="danger" onClick={() => onDeleteStaff(staff.id)}>Delete</Button>
+        </div>
+
+
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      staffs: STAFFS,
+      departments: DEPARTMENTS
+    };
+    this.addStaff = this.addStaff.bind(this);
+  }
+
+  addStaff = (staff) => {
+    const id = Math.floor(Math.random() * 10000 + 1);
+    const newStaff = { id, ...staff };
+    this.setState({
+      staffs: [...this.state.staffs, newStaff]
+    });
+    console.log(newStaff);
+    console.log(this.state.staffs);
+  }
+
+FKLQT5W&

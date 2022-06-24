@@ -7,33 +7,18 @@ export const addStaffSuccess = (staff) => ({
     payload: staff
 });
 
-export const addStaff = (staff) => (dispatch) => {
+export const addStaff = (newStaff) => (dispatch) => {
+      newStaff.salary = Math.round(newStaff.salaryScale * 3000000 + newStaff.overTime * 200000);
+      newStaff.image = "/assets/images/alberto.png";
+
     return fetch(baseUrl + "staffs", {
         method: "POST",
-        body: JSON.stringify(staff),
+        body: JSON.stringify(newStaff),
         headers: {
             "Content-Type": "application/json"
         },
         credentials: "same-origin"
     })
-        .then(
-            (response) => {
-                if (response.ok) {
-                    return response;
-                }
-                else {
-                    var error = new Error(
-                        "Error " + response.status + ": " + response.statusText
-                    );
-                    error.response = response;
-                    throw error;
-                }
-            },
-            (error) => {
-                throw error;
-            }
-        )
-
         .then((response) => response.json())
         .then((response) => dispatch(addStaffSuccess(response)))
         .catch((error) => {
@@ -53,13 +38,18 @@ export const deleteStaffLoading = () => ({
 });
 
 export const deleteStaff = (id) => (dispatch) => {
-    /*if (confirm("Are you sure to delete this staff?")) {
-        return fetch(baseUrl + `staffs/${id}`, {
-            method: "DELETE"
-        }).then(() => dispatch(deleteStaffSuccess(id)));
-    }
-    else*/ return;
-};
+    fetch(baseUrl + `staffs/${id}`, {
+            method: "DELETE",
+            statusCode: 204,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin"
+        })
+        .then((response) => response.json())
+        .then(() => dispatch(deleteStaffSuccess(id)))
+        .catch((error) => {console.log(error.message)});
+    };
 
 //UPDATE
 export const updateStaffSuccess = (staff) => ({
@@ -104,8 +94,9 @@ export const updateStaff = (staff) => (dispatch) => {
 
 //FETCH STAFF
 
-export const staffsLoading = () => ({
-    type: actionType.STAFFS_LOADING
+export const staffsLoading = (staffs) => ({
+    type: actionType.STAFFS_LOADING,
+    payload: staffs
 });
 
 export const fetchStaffs = () => (dispatch) => {
@@ -126,23 +117,42 @@ export const fetchStaffsSuccess = (staffs) => ({
     payload: staffs
 });
 
-//FETCH DEPARTMNT
+// DEPARTMNT
 
-export const departmentsLoading = () => ({
-    type: actionType.DEPARTMENTS_LOADING
-});
+export const loadDepartments = (departments) => ({
+    type: actionType.DEPARTMENTS_LOADING,
+    payload: departments
+})
 
 export const fetchDepartments = () => (dispatch) => {
-    dispatch(departmentsLoading(true));
+    dispatch(loadDepartments(true));
     return fetch(baseUrl + "departments")
+        .then(
+            (response) => {
+                if (response.ok) {
+                    return response;
+                }
+                else {
+                    var error = new Error(
+                        "Error " + response.status + ": " + response.statusText
+                    );
+                    error.response = response;
+                    throw error;
+                }
+            },
+            (error) => {
+                var errMess = new Error(error.message);
+                throw errMess;
+            }
+        )
         .then((response) => response.json())
         .then((departments) => dispatch(fetchDepartmentsSuccess(departments)))
         .catch((error) => dispatch(fetchDepartmentsFailed(error.message)));
 };
 
-export const fetchDepartmentsFailed = (errmess) => ({
+export const fetchDepartmentsFailed = (errMess) => ({
     type: actionType.DEPARTMENTS_FAILED,
-    payload: errmess
+    payload: errMess
 });
 
 export const fetchDepartmentsSuccess = (departments) => ({

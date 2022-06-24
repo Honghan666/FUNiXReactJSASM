@@ -29,8 +29,7 @@ export const Departments = (
             return {
                 ...state,
                 isLoading: false,
-                errMess: action.payload,
-                departments: []
+                errMess: action.payload
             };
         
         default:

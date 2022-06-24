@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Header from './header';
 import StaffList from './staffList';
 import StaffDetail from './staffDetail';
@@ -6,8 +6,7 @@ import DepartmentDetail from './departmentDetail';
 import PhongBan from './department';
 import Salary from './luong';
 import Footer from './footer';
-import { Switch, Route, withRouter, useHistory, Redirect } from "react-router-dom";
-import { STAFFS, DEPARTMENTS } from './staffs';
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { Component } from 'react/cjs/react.production.min';
 import { addStaff, fetchStaffs, fetchDepartments, deleteStaff, updateStaff, fetchStaffsSalary} from "../redux/actionCreators";
 import { connect } from "react-redux";
@@ -61,21 +60,19 @@ class Main extends Component {
         );
       };
     
-    const StaffWithDept = ({ match }) => {
-      return (
+      const DepartmentById = ({ match }) => {
+        return (
           <DepartmentDetail
-            dept = {
-              this.props.departments.departments.filter(
-                (dept) => dept.id === match.params.deptId
+            departments={this.props.departments.departments.filter(
+                (department) => department.id === match.params.departmentId
               )[0]
             }
-            staff = {this.props.staffs.staffs.filter(
-              (staff) => staff.departmentId === match.params.deptId
+            staffs={this.props.staffs.staffs.filter(
+              (staff) => staff.departmentId === match.params.departmentId
             )}
           />
         );
       };
-      
     return(
       <div>
           <Header />
@@ -83,11 +80,14 @@ class Main extends Component {
             <Route exact path='/nhanvien' component={() => 
             <StaffList 
             //staffsLoading={this.props.staff.isLoading}
-            onAddStaff={this.props.addStaff}
+            addStaff={this.props.addStaff}
             staffs={this.props.staffs.staffs}
             onDeleteStaff={this.props.deleteStaff} />}/>
             <Route path="/nhanvien/:nhanvienId" component={StaffWithId} />
-            <Route path="/departments/deptId" component={StaffWithDept} />
+            <Route
+                  path="/departments/:departmentId"
+                  component={DepartmentById}
+                />
             <Route path='/departments' component={() => 
             <PhongBan 
             departments={this.props.departments.departments}
