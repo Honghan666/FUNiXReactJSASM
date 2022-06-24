@@ -1,11 +1,16 @@
 import React from "react";
 import { Card, CardTitle, CardBody, CardText} from "reactstrap";
 import { Link } from 'react-router-dom';
+import { FadeTransform, Fade } from "react-animation-components";
+
 
 
 function RenderDept(props) {
     return (
-        <Link to={`/departments/${props.dept.id}`}>
+        <FadeTransform in transformProps={{
+            exitTransform: "scale(0.1) translateY(-1%)",
+          }}>
+            <Link to={`/departments/${props.dept.id}`}>
             <Card>
                 <CardTitle className="m-2">{props.dept.name}</CardTitle>
                 <CardBody>
@@ -13,6 +18,7 @@ function RenderDept(props) {
                 </CardBody>
             </Card>
         </Link>
+        </FadeTransform>
     );
 }
 
@@ -21,11 +27,13 @@ function PhongBan(props) {
     const departments = props.departments.map((department)=>{
         return(
         <div className='col-12 col-md-6 col-lg-4 mt-2 mb-2' key={department.id}>
+        <Fade in>
         <RenderDept 
         dept={department}
         staffNo={props.staffs.filter(
             (staff) => staff.departmentId === department.id
         )} />
+        </Fade>
         </div>
     );
 });

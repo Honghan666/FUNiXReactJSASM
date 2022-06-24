@@ -2,6 +2,8 @@ import React from 'react';
 import dateFormat from 'dateformat';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { FadeTransform } from "react-animation-components";
+
 
 function StaffDetail(props) {
     if(props.staff != null) {
@@ -36,6 +38,7 @@ function RenderStaff({staff}) {
     if(staff != null) {
         return (
             <div className='col-8 col-md-8 col-lg-5  mx-auto card staff-detail card-detail'>
+                <FadeTransform in>
                 <img width="35%" src={staff.image} alt={staff.name} className='rounded mx-auto d-block' />
                     <div className='card-body'>
                         <p>Họ và Tên: {staff.name}</p>
@@ -45,6 +48,7 @@ function RenderStaff({staff}) {
                         <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
                         <p>Số ngày đã làm thêm: {staff.overTime}</p>
                     </div>
+                </FadeTransform>
             </div>
         );
     }

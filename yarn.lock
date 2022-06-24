@@ -7542,7 +7542,7 @@
     "minimist" "^1.2.0"
     "strip-json-comments" "~2.0.1"
 
-"react-animation-components@3.0.0":
+"react-animation-components@^3.0.0":
   "integrity" "sha512-9BhSSQ+8ZW2RciRA1wmIybZgmyC6myPXmkOR3zBZtt5V8Zm63fxSwb+ooiZZbgC91ASS/1LHjftdzv9Y5izQFA=="
   "resolved" "https://registry.npmjs.org/react-animation-components/-/react-animation-components-3.0.0.tgz"
   "version" "3.0.0"

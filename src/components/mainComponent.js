@@ -10,6 +10,7 @@ import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { Component } from 'react/cjs/react.production.min';
 import { addStaff, fetchStaffs, fetchDepartments, deleteStaff, updateStaff, fetchStaffsSalary} from "../redux/actionCreators";
 import { connect } from "react-redux";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 
 //export const history = useHistory;
@@ -22,8 +23,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addStaff: (staff) => {
-    dispatch(addStaff(staff));
+  addStaff: (newStaff) => {
+    dispatch(addStaff(newStaff));
   },
   fetchStaffs: () => {
     dispatch(fetchStaffs());
@@ -76,26 +77,26 @@ class Main extends Component {
     return(
       <div>
           <Header />
-          <Switch>
-            <Route exact path='/nhanvien' component={() => 
-            <StaffList 
-            //staffsLoading={this.props.staff.isLoading}
-            addStaff={this.props.addStaff}
-            staffs={this.props.staffs.staffs}
-            onDeleteStaff={this.props.deleteStaff} />}/>
-            <Route path="/nhanvien/:nhanvienId" component={StaffWithId} />
-            <Route
-                  path="/departments/:departmentId"
-                  component={DepartmentById}
-                />
-            <Route path='/departments' component={() => 
-            <PhongBan 
-            departments={this.props.departments.departments}
-            staffs={this.props.staffs.staffs} 
-            />}/>
-            <Route path='/salary' component={() => <Salary sal={this.props.staffsSalary.staffsSalary} />} />
-            <Redirect to="/nhanvien" />
-          </Switch>
+            <Switch location={this.props.location}>
+              <Route exact path='/nhanvien' component={() => 
+              <StaffList 
+              //staffsLoading={this.props.staff.isLoading}
+              addStaff={this.props.addStaff}
+              staffs={this.props.staffs.staffs}
+              onDeleteStaff={this.props.deleteStaff} />}/>
+              <Route path="/nhanvien/:nhanvienId" component={StaffWithId} />
+              <Route
+                    path="/departments/:departmentId"
+                    component={DepartmentById}
+                  />
+              <Route path='/departments' component={() => 
+              <PhongBan 
+              departments={this.props.departments.departments}
+              staffs={this.props.staffs.staffs} 
+              />}/>
+              <Route path='/salary' component={() => <Salary sal={this.props.staffsSalary.staffsSalary} />} />
+              <Redirect to="/nhanvien" />
+            </Switch>
           <Footer />
       </div>
     );

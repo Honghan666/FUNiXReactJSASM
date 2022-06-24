@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom';
 import { Component } from 'react/cjs/react.production.min';
 import { Card, CardImg, CardBody, CardSubtitle, Button, Modal, Col, Form, Input,
 ModalHeader, ModalBody, Row, Label, FormFeedback } from 'reactstrap';
+import { FadeTransform, Fade } from "react-animation-components";
 
 const RenderStaffItem = ({ staff, onDeleteStaff }) => {
     return (
-        <div>
+        <FadeTransform in
+        transformProps={{
+          exitTransform: "scale(0.1) translateY(-1%)",
+        }}>
+            <div>
             <Link to={`/nhanvien/${staff.id}`}>
                 <Card>
                     <CardImg width="100%" src={staff.image} alt={staff.name} />
@@ -17,6 +22,7 @@ const RenderStaffItem = ({ staff, onDeleteStaff }) => {
             </Link>
             <Button className="del-btn" color="danger" onClick={() => onDeleteStaff(staff.id)}>Xóa</Button>
         </div>
+        </FadeTransform>
     )
 }
 
@@ -88,9 +94,9 @@ class StaffList extends Component {
         const newStaff = {
             name: this.state.name,
             doB: this.state.doB,
-            startDate: this.state.startDate,
-            department: this.state.department,
             salaryScale: this.state.salaryScale,
+            startDate: this.state.startDate,
+            departmentId: this.state.department,
             annualLeave: this.state.annualLeave,
             overTime: this.state.overTime,
             image: this.state.image
@@ -152,7 +158,9 @@ class StaffList extends Component {
         .map(staff=>{
             return (
                 <div className='col-6 col-md-4 col-lg-2 mt-3'>
-                    <RenderStaffItem staff={staff} onDeleteStaff={this.props.onDeleteStaff} />
+                    <Fade in>
+                        <RenderStaffItem staff={staff} onDeleteStaff={this.props.onDeleteStaff} />
+                    </Fade>
                 </div>
             )
         });

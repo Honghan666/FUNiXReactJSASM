@@ -9,6 +9,8 @@ import {
   CardText,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { FadeTransform, Fade } from "react-animation-components";
+
 
 const DepartmentDetail = (props) => {
   const staffs = props.staffs.map((staff) => {
